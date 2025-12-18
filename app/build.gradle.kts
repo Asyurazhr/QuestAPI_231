@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.API"
+    namespace = "com.example.api.MainActivity"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.API"
+        applicationId = "com.example.api.MainActivity"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -28,13 +28,16 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
@@ -42,27 +45,44 @@ android {
 
 dependencies {
 
+    // Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // Compose BOM
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+
+    // Material 3
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.material3)
+
+    // Icons
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // Lifecycle
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+
+    // Navigation
+    implementation(libs.navigation.compose)
+
+    // Networking
+    implementation(libs.retrofit.serialization)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.navigation.compose)
-    implementation(libs.retrofit.serialization)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
 }
