@@ -24,16 +24,17 @@ class DefaultContainerApp : ContainerApp{
         .build()
 
     private val retrofit : Retrofit = Retrofit.Builder()
-        .baseUrl(baseurl=baseurl)
+        .baseUrl(baseurl)
         .addConverterFactory(
-            factory = Json {
+            Json {
                 ignoreUnknownKeys = true
                 prettyPrint = true
                 isLenient = true
-            }.asConverterFactory(contentType= "application/json".toMediaType())
+            }.asConverterFactory("application/json".toMediaType())
         )
-        .client(client = klien)
+        .client(klien)
         .build()
+
 
     private val retrofitService : ServiceApiSiswa by lazy {
         retrofit.create(ServiceApiSiswa::class.java)
