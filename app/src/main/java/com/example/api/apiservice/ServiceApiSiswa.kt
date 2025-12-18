@@ -11,3 +11,12 @@ interface ServiceApiSiswa {
     @GET(value="bacaTeman.php")
     suspend fun getSiswa(): List<DataSiswa>
 
+    @POST(value="insertTM.php")
+    suspend fun postSiswa(@Body dataSiswa: DataSiswa): retrofit2.Response<Void>
+
+   /// @GET("baca1teman.php/{id}")
+    ///suspend fun GetSatuSiswa(@Query("id")id: Int) DataSiswa
+
+    ///@PUT("editTM.php/{id}")
+   /// suspend fun editSatuSiswa(@query("id") id: INT,@Body dataSiswa): retrofit2Response<Void>
+}
