@@ -49,3 +49,13 @@ fun DetailSiswaScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
+    Scaffold(
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(id = DestinasiDetail.titleRes),
+                canNavigateBack = true,
+                navigateUp = navigateBack
+            )
+        },
