@@ -78,3 +78,18 @@ fun DetailSiswaScreen(
             }
         },
         modifier = modifier
+    ) { innerPadding ->
+        ItemDetailsBody(
+            statusUIDetail = viewModel.statusUIDetail, // ✅ sesuai VM
+            onDelete = {
+                coroutineScope.launch {
+                    viewModel.hapusSatuSiswa()
+                    navigateBack()
+                }
+            },
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+        )
+    }
+}
