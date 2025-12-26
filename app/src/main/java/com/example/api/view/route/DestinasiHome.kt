@@ -1,6 +1,6 @@
 package com.example.api.view.route
 
-import com.example.API.R
+import com.example.api.R
 
 
 object DestinasiHome : DestinasiNavigasi {
