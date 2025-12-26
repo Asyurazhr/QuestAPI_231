@@ -93,3 +93,48 @@ fun DetailSiswaScreen(
         )
     }
 }
+
+@Composable
+private fun ItemDetailsBody(
+    statusUIDetail: StatusUIDetail,
+    onDelete: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
+    ) {
+        var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
+
+        when (val ui = statusUIDetail) {
+            is StatusUIDetail.Success -> {
+                ItemDetails(
+                    siswa = ui.satusiswa, // ✅ sesuai VM
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                OutlinedButton(
+                    onClick = { deleteConfirmationRequired = true },
+                    shape = MaterialTheme.shapes.small,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(stringResource(id = R.string.delete_confirm))
+                }
+
+                if (deleteConfirmationRequired) {
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDelete()
+                        },
+                        onDeleteCancel = { deleteConfirmationRequired = false },
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+                    )
+                }
+            }
+
+            StatusUIDetail.Loading -> Text(text = "Loading...")
+            StatusUIDetail.Error -> Text(text = "Error loading data")
+        }
+    }
+}
