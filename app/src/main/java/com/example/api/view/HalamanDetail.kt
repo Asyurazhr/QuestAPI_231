@@ -59,3 +59,22 @@ fun DetailSiswaScreen(
                 navigateUp = navigateBack
             )
         },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    // ✅ smart-cast aman + sesuai nama property di VM kamu: satusiswa
+                    when (val ui = viewModel.statusUIDetail) {
+                        is StatusUIDetail.Success -> navigateToEditItem(ui.satusiswa.id)
+                        else -> {}
+                    }
+                },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = stringResource(id = R.string.edit_siswa),
+                )
+            }
+        },
+        modifier = modifier
